@@ -73,11 +73,9 @@ for(var i in cols) {
 }
 sorted.sort();
 
-var but = document.querySelector('button');
 var span = document.querySelector('#go span');
 var result = document.querySelectorAll('#go span')[1];
 var list = document.querySelector('ul');
-var gameone = true;
 var currentcol = 'white';
 
 function init() {
@@ -92,17 +90,16 @@ function init() {
 init();
 
 list.addEventListener('click', function(ev) {
-  if (gameon) {
-    var target = ev.target;
-    if (target.tagName === 'A') {
-      var col = target.getAttribute('data-title');
-      if (col === currentcol) {
-        result.innerHTML = '';
-        document.body.className = '';
-        init();
-      } else {
-        result.innerHTML = 'nope… (' + col + ')';
-      }
+  ev.preventDefault();
+  var target = ev.target;
+  if (target.tagName === 'A') {
+    var col = target.getAttribute('data-title');
+    if (col === currentcol) {
+      result.innerHTML = '';
+      document.body.className = '';
+      init();
+    } else {
+      result.innerHTML = 'nope… (' + col + ')';
     }
   }
 });
