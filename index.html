@@ -16,7 +16,11 @@
     float: left;
   }
   li a {
+    line-height: 50px;
+    font-size: 40px;
+    text-align: center;
     width: 50px;
+    color: #000;
     height: 50px;
     border-radius: 50px 50px;
     display: block;
@@ -151,6 +155,16 @@ function shuffle(array) {
   }
   return newarray;
 }
+
+document.addEventListener('keydown', function(ev){
+  if (ev.which === 191) {
+    document.querySelector('a[data-title^='+currentcol+']').innerHTML = '!'
+  }
+});
+document.addEventListener('keyup', function(ev){
+    document.querySelector('a[data-title^='+currentcol+']').innerHTML = ''
+});
+
 })();
 </script>
 </body>
