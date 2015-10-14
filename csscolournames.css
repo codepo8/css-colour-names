@@ -1,6 +1,8 @@
-body {
+body,html {
   background: #000;
   font-family: helvetica, arial, sans-serif;
+  width: 600px;
+  margin: 0 auto;
 }
 a {color: lime;
   text-decoration: none;}
@@ -30,7 +32,7 @@ p {
 }
 p {
   position: fixed;
-  width: 100%;
+  width: 600px;
   background: #000;
   top: 10px;
 }

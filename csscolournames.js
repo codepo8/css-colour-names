@@ -22,8 +22,8 @@
   'MidnightBlue','MintCream','MistyRose','Moccasin','NavajoWhite',
   'Navy','OldLace','Olive','OliveDrab','Orange','OrangeRed',
   'Orchid','PaleGoldenRod','PaleGreen','PaleTurquoise','PaleVioletRed',
-  'PapayaWhip','PeachPuff','Peru','Pink','Plum','PowderBlue'
-  ,'Purple','RebeccaPurple','Red','RosyBrown','RoyalBlue',
+  'PapayaWhip','PeachPuff','Peru','Pink','Plum','PowderBlue',
+  'Purple','RebeccaPurple','Red','RosyBrown','RoyalBlue',
   'SaddleBrown','Salmon','SandyBrown','SeaGreen','SeaShell',
   'Sienna','Silver','SkyBlue','SlateBlue','SlateGray','Snow',
   'SpringGreen','SteelBlue','Tan','Teal','Thistle','Tomato',
@@ -47,9 +47,6 @@
       localStorage.zomgcsscolourstate = right + 'x' + allmoves;
     }
     updatecounter(right, allmoves);
-    var index = Math.random() * cols.length | 0;
-    currentcol = cols[index];
-    colname.innerHTML = currentcol;
     randomswabs();
   }
 
@@ -85,8 +82,11 @@
   function randomswabs() {
     var list = document.querySelector('ul');
     var out ='';
-    var newrand = shuffle(cols);
+    var newrand = shuffle(cols).slice(0, 37);
     var all = newrand.length;
+    var index = Math.random() * all | 0;
+    currentcol = newrand[index];
+    colname.innerHTML = currentcol;
     while(--all) {
       out += '<li><a href="#"  data-title="' + newrand[all] +
              '" style="background:' + newrand[all] +
@@ -111,15 +111,15 @@
   document.addEventListener('keydown', function(ev) {
     if (ev.which === 191) {
       document.querySelector('a[data-title^=' + currentcol +
-                             ']').innerHTML = '!'
+                             ']').innerHTML = '!';
       }
   });
   document.addEventListener('keyup', function(ev) {
       document.querySelector('a[data-title^=' + currentcol +
-                             ']').innerHTML = ''
+                             ']').innerHTML = '';
   });
   document.querySelector('button').addEventListener('click', 
-    function(ev){
+    function(ev) {
       localStorage.zomgcsscolourstate = '0x0';
       init();
   });
