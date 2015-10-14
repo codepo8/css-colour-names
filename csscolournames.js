@@ -107,7 +107,7 @@
       newrand = shuffle(cols).slice(0, +swabnumber);
     }
     var all = newrand.length;
-    var index = Math.random() * (all - 1) | 0;
+    var index = Math.floor(Math.random() * items.length);
     currentcol = newrand[index];
     colname.innerHTML = currentcol;
     while(--all) {
