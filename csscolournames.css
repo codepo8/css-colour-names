@@ -2,6 +2,11 @@ body,html {
   background: #000;
   font-family: helvetica, arial, sans-serif;
 }
+div {
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+}
 a {color: lime;
   text-decoration: none;}
 li {
@@ -30,7 +35,7 @@ p {
 }
 p {
   position: fixed;
-  width: 100%;
+  max-width: 600px;
   background: #000;
   top: 10px;
 }
