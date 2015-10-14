@@ -106,17 +106,17 @@ var list = document.querySelector('ul');
 var currentcol = 'white';
 var allmoves = 0;
 var right = 0;
-if (localStorage.zomgcsscolourstate) {
-  var chunks = localStorage.zomgcsscolourstate.split('x');
-  allmoves = chunks[1];
-  right = chunks[0];
-} else {
-  localStorage.zomgcsscolourstate = right + 'x' + allmoves; 
-}
-var counter = document.querySelector('#counter');
-counter.innerHTML = '<span class="right">'+right+'</span>/<span class="wrong">'+allmoves+'</span>';
 
 function init() {
+  if (localStorage.zomgcsscolourstate) {
+    var chunks = localStorage.zomgcsscolourstate.split('x');
+    allmoves = chunks[1];
+    right = chunks[0];
+  } else {
+    localStorage.zomgcsscolourstate = right + 'x' + allmoves; 
+  }
+  var counter = document.querySelector('#counter');
+  counter.innerHTML = '<span class="right">'+right+'</span>/<span class="wrong">'+allmoves+'</span>';
   var index = Math.random() * sorted.length | 0;
   currentcol = sorted[index].split('|')[2];
   span.innerHTML = currentcol;
