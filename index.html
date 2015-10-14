@@ -156,7 +156,7 @@ function randomswabs() {
   var all = newrand.length;
   while(--all) {
     var parts = newrand[all].split('|');
-    out += '<li><a href="#"  data-title="'+parts[2]+'" style="background:#'+parts[1]+'"></a></li>';
+    out += '<li><a href="#"  data-title="'+parts[2]+'" style="background:'+parts[2]+'"></a></li>';
   }
   list.innerHTML = out;
 }
