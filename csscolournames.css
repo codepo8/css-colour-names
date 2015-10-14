@@ -1,0 +1,70 @@
+body {
+  background: #000;
+  font-family: helvetica, arial, sans-serif;
+}
+a {color: lime;
+  text-decoration: none;}
+li {
+  list-style:none;
+  float: left;
+}
+li a {
+  line-height: 50px;
+  font-size: 40px;
+  text-align: center;
+  width: 50px;
+  color: #000;
+  height: 50px;
+  border-radius: 50px 50px;
+  display: block;
+}
+
+ul {
+  margin: 210px 0 0 0;
+  padding: 0;
+}
+p {
+  color: #fff;
+  font-size: 30px;
+  text-transform: uppercase;
+}
+p {
+  position: fixed;
+  width: 100%;
+  background: #000;
+  top: 10px;
+}
+#colourname {
+  color: lime;
+}  
+#result {
+  display: block;
+  color: #ccc;
+  margin-top: 5px;
+}
+footer {
+  display: block;
+  clear: both;
+  color: #ccc;
+  text-align: right;
+  padding: 5em 3em;
+}
+span span {
+  padding: 0 .2em;
+}
+.right {
+  color: LawnGreen;
+}
+.wrong {
+  color: IndianRed;
+}
+button {
+  border: none;
+  background: olivedrab;
+  color: #fff;
+  font-family: helvetica, arial, sans-serif;
+  font-size: 14px;
+  padding: 5px 10px;
+  margin-right: 20px;
+  display: inline-block;
+}
