@@ -32,6 +32,9 @@ li a {
 li a:hover {
   transform: scale(1);
 }
+b {
+  font-weight: normal;
+}
 
 ul {
   margin: 210px 0 50px 0;

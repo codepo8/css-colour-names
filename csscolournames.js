@@ -77,7 +77,8 @@
         ++allmoves;
         save();
         updatecounter(right, allmoves);
-        result.innerHTML = 'nope… (' + col + ')';
+        result.innerHTML = 'nope… <b style="color: ' + col +
+                           '">(' + col + ')</b>';
       }
     }
   });
