@@ -50,7 +50,7 @@
       localStorage.zomgcsscolourstate = right + 'x' + allmoves + 'x' + swabnumber;
     }
     updatecounter(right, allmoves);
-    randomswabs();
+    randomswabs(0);
   }
 
   init();
@@ -97,7 +97,7 @@
                                       'x' + swabnumber;
   }
 
-  function randomswabs() {
+  function randomswabs(test) {
     var list = document.querySelector('ul');
     var out ='';
     var newrand = [];
@@ -110,13 +110,27 @@
     var index = Math.floor(Math.random() * newrand.length);
     currentcol = newrand[index];
     colname.innerHTML = currentcol;
-    while(--all) {
-      out += '<li><a href="#"  data-title="' + newrand[all] +
-             '" style="background:' + newrand[all] +
-             '"></a></li>';
+
+    // if (newrand.indexOf(currentcol)<0){
+    //   console.log(index, currentcol, newrand.indexOf(currentcol));
+    // }
+    if (!test) {
+      for (var i = 0; i < all; i++) {
+        out += '<li><a href="#"  data-title="' + newrand[i] +
+               '" style="background:' + newrand[i] +
+               '"></a></li>';
+      }
+      list.innerHTML = out;
     }
-    list.innerHTML = out;
   }
+
+  // function test() {
+  //   x = 100000;
+  //   while(--x){
+  //     randomswabs(1);
+  //   }
+  // }
+  // test();
 
   function shuffle(array) {
     var newarray = array.slice(0);
