@@ -33,18 +33,21 @@
   var colname = document.querySelector('#colourname');
   var result = document.querySelector('#result');
   var list = document.querySelector('ul');
+  var amounts = document.querySelector('#amounts');
   var counter = document.querySelector('#counter');
   var currentcol = 'white';
   var allmoves = 0;
   var right = 0;
+  var swabnumber = 37;
 
   function init() {
     if (localStorage.zomgcsscolourstate) {
       var chunks = localStorage.zomgcsscolourstate.split('x');
       allmoves = chunks[1];
       right = chunks[0];
+      swabnumber = chunks[2] || 37;
     } else {
-      localStorage.zomgcsscolourstate = right + 'x' + allmoves;
+      localStorage.zomgcsscolourstate = right + 'x' + allmoves + 'x' + swabnumber;
     }
     updatecounter(right, allmoves);
     randomswabs();
@@ -67,22 +70,42 @@
         ++right;
         ++allmoves;
         updatecounter(right, allmoves);
-        localStorage.zomgcsscolourstate = right + 'x' + allmoves;
+        save();
         result.innerHTML = '';
         init();
       } else {
         ++allmoves;
-        localStorage.zomgcsscolourstate = right + 'x' + allmoves;
+        save();
         updatecounter(right, allmoves);
         result.innerHTML = 'nope… (' + col + ')';
       }
     }
   });
 
+  amounts.addEventListener('click', function(ev) {
+    ev.preventDefault();
+    var target = ev.target;
+    if (target.tagName === 'BUTTON') {
+      swabnumber = target.getAttribute('data-amount');
+      save();
+      init();
+    }
+  });
+
+  function save() {
+    localStorage.zomgcsscolourstate = right + 'x' + allmoves +
+                                      'x' + swabnumber;
+  }
+
   function randomswabs() {
     var list = document.querySelector('ul');
     var out ='';
-    var newrand = shuffle(cols).slice(0, 37);
+    var newrand = [];
+    if (swabnumber === 'all') {
+      newrand = shuffle(cols);
+    } else {
+      newrand = shuffle(cols).slice(0, +swabnumber);
+    }
     var all = newrand.length;
     var index = Math.random() * all | 0;
     currentcol = newrand[index];
@@ -118,7 +141,7 @@
       document.querySelector('a[data-title^=' + currentcol +
                              ']').innerHTML = '';
   });
-  document.querySelector('button').addEventListener('click', 
+  document.querySelector('button').addEventListener('click',
     function(ev) {
       localStorage.zomgcsscolourstate = '0x0';
       init();

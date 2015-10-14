@@ -8,6 +8,7 @@ div {
   background: #000;
   margin: 0 auto;
   position: relative;
+  color: #fff;
 }
 a {color: lime;
   text-decoration: none;}
@@ -27,9 +28,11 @@ li a {
 }
 
 ul {
-  margin: 210px 0 0 0;
+  margin: 210px 0 50px 0;
   padding: 0;
+  overflow: auto;
 }
+
 p {
   color: #fff;
   font-size: 30px;
@@ -75,5 +78,12 @@ button {
   padding: 5px 10px;
   margin: 2em 0;
   clear: both;
-  display: inline-block;
+  display: block;
+}
+ul#amounts {
+  margin: 0;
+  padding: 0;
+}
+li button {
+  margin: 0;
 }
