@@ -1,9 +1,11 @@
 body,html {
-  background: #000;
+  background: DarkSlateGray;
   font-family: helvetica, arial, sans-serif;
 }
 div {
   max-width: 600px;
+  padding: 2em;
+  background: #000;
   margin: 0 auto;
   position: relative;
 }
@@ -52,7 +54,7 @@ footer {
   clear: both;
   color: #ccc;
   text-align: right;
-  padding: 5em 3em;
+  padding: 1em;
 }
 span span {
   padding: 0 .2em;
@@ -67,9 +69,11 @@ button {
   border: none;
   background: olivedrab;
   color: #fff;
+  text-transform: uppercase;
   font-family: helvetica, arial, sans-serif;
-  font-size: 14px;
+  font-size: 18px;
   padding: 5px 10px;
-  margin-right: 20px;
+  margin: 2em 0;
+  clear: both;
   display: inline-block;
 }
