@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Named Colours</title>
+  <style>
+    body,html {
+        background: DarkSlateGray;
+        font-family: helvetica, arial, sans-serif;
+    }
+    div {
+        max-width: 600px;
+        padding: 2em;
+        background: #000;
+        margin: 0 auto;
+        position: relative;
+        color: #fff;
+    }
+    a {color: lime;
+    text-decoration: none;}
+    li {
+    list-style:none;
+    float: left;
+    }
+    li a {
+    line-height: 50px;
+    font-size: 40px;
+    text-align: center;
+    font-weight: bold;
+    width: 50px;
+    color: #000;
+    height: 50px;
+    border-radius: 50% 50%;
+    display: block;
+    transform: scale(0.85);
+    transition: 0.4s;
+    }
+    li a:hover {
+    transform: scale(1);
+    }
+    b {
+    font-weight: normal;
+    }
+
+    ul {
+    margin: 70px 0 50px 0;
+    padding: 0;
+    overflow: auto;
+    }
+
+    p {
+    color: #fff;
+    font-size: 20px;
+    text-transform: uppercase;
+    }
+    p {
+    position: fixed;
+    max-width: 580px;
+    background: #000;
+    top: 10px;
+    padding: 10px;
+    z-index: 2; 
+    }
+    #colourname {
+    color: lime;
+    }  
+    #result {
+    display: block;
+    color: #ccc;
+    margin-top: 5px;
+    }
+    footer {
+    display: block;
+    clear: both;
+    color: #ccc;
+    text-align: right;
+    padding: 2em 0 1em 0;
+    }
+    span span {
+    padding: 0 .2em;
+    }
+    .right {
+    color: LawnGreen;
+    }
+    .wrong {
+    color: IndianRed;
+    }
+    button {
+    border: none;
+    background: olivedrab;
+    color: #fff;
+    text-transform: uppercase;
+    font-family: helvetica, arial, sans-serif;
+    font-size: 18px;
+    padding: 5px 10px;
+    margin: 2em 0;
+    clear: both;
+    display: block;
+    }
+    footer button {
+        margin: 0;
+        float: left;
+    }
+    ul#amounts {
+    margin: 0;
+    padding: 0;
+    }
+    li button {
+    margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <div>
+<p>
+  Click the colour <span id="colourname"></span>. 
+  <span id="counter"></span> 
+  <span id="result"></span>
+</p>
+<ul></ul>
+Colours:
+<ul id="amounts">
+  <li><button data-amount="40">40</button></li>
+  <li><button data-amount="80">80</button></li>
+  <li><button data-amount="120">120</button></li>
+  <li><button data-amount="all">all</button></li>
+</ul>
+<footer>
+    <button>reset score</button>
+   …hi, I am <a href="https://twitter.com/codepo8">@codepo8</a> and 
+   this is on <a href="https://github.com/codepo8/css-colour-names">GitHub</a>
+ </footer>
+</div>
+<script>
+(function(){
+
+  var cols = ['AliceBlue','AntiqueWhite','Aqua','Aquamarine',
+  'Azure','Beige','Bisque','Black','BlanchedAlmond','Blue',
+  'BlueViolet','Brown','BurlyWood','CadetBlue','Chartreuse',
+  'Chocolate','Coral','CornflowerBlue','Cornsilk','Crimson',
+  'Cyan','DarkBlue','DarkCyan','DarkGoldenRod','DarkGray',
+  'DarkGreen','DarkKhaki','DarkMagenta','DarkOliveGreen',
+  'DarkOrange','DarkOrchid','DarkRed','DarkSalmon','DarkSeaGreen',
+  'DarkSlateBlue','DarkSlateGray','DarkTurquoise','DarkViolet',
+  'DeepPink','DeepSkyBlue','DimGray','DodgerBlue','FireBrick',
+  'FloralWhite','ForestGreen','Fuchsia','Gainsboro','GhostWhite',
+  'Gold','GoldenRod','Gray','Green','GreenYellow','HoneyDew',
+  'HotPink','IndianRed ','Indigo  ','Ivory','Khaki','Lavender',
+  'LavenderBlush','LawnGreen','LemonChiffon','LightBlue','LightCoral',
+  'LightCyan','LightGoldenRodYellow','LightGray','LightGreen',
+  'LightPink','LightSalmon','LightSeaGreen','LightSkyBlue',
+  'LightSlateGray','LightSteelBlue','LightYellow','Lime','LimeGreen',
+  'Linen','Magenta','Maroon','MediumAquaMarine','MediumBlue',
+  'MediumOrchid','MediumPurple','MediumSeaGreen','MediumSlateBlue',
+  'MediumSpringGreen','MediumTurquoise','MediumVioletRed',
+  'MidnightBlue','MintCream','MistyRose','Moccasin','NavajoWhite',
+  'Navy','OldLace','Olive','OliveDrab','Orange','OrangeRed',
+  'Orchid','PaleGoldenRod','PaleGreen','PaleTurquoise','PaleVioletRed',
+  'PapayaWhip','PeachPuff','Peru','Pink','Plum','PowderBlue',
+  'Purple','RebeccaPurple','Red','RosyBrown','RoyalBlue',
+  'SaddleBrown','Salmon','SandyBrown','SeaGreen','SeaShell',
+  'Sienna','Silver','SkyBlue','SlateBlue','SlateGray','Snow',
+  'SpringGreen','SteelBlue','Tan','Teal','Thistle','Tomato',
+  'Turquoise','Violet','Wheat','White','WhiteSmoke','Yellow',
+  'YellowGreen'];
+
+  var colname = document.querySelector('#colourname');
+  var result = document.querySelector('#result');
+  var list = document.querySelector('ul');
+  var amounts = document.querySelector('#amounts');
+  var counter = document.querySelector('#counter');
+  var currentcol = 'white';
+  var allmoves = 0;
+  var right = 0;
+  var swabnumber = 37;
+
+  function init() {
+    if (localStorage.zomgcsscolourstate) {
+      var chunks = localStorage.zomgcsscolourstate.split('x');
+      allmoves = chunks[1];
+      right = chunks[0];
+      swabnumber = chunks[2] || 37;
+    } else {
+      localStorage.zomgcsscolourstate = right + 'x' + allmoves + 'x' + swabnumber;
+    }
+    updatecounter(right, allmoves);
+    randomswabs();
+  }
+
+  init();
+
+  function updatecounter(right, allmoves) {
+    counter.innerHTML = '<span class="right">' + right +
+                        '</span>/<span class="wrong">' +
+                         allmoves+'</span>';
+  }
+
+  list.addEventListener('click', function(ev) {
+    ev.preventDefault();
+    var target = ev.target;
+    if (target.tagName === 'A') {
+      var col = target.getAttribute('data-title');
+      if (col === currentcol) {
+        ++right;
+        ++allmoves;
+        updatecounter(right, allmoves);
+        save();
+        result.innerHTML = '';
+        init();
+      } else {
+        ++allmoves;
+        save();
+        updatecounter(right, allmoves);
+        result.innerHTML = 'nope… <b style="color: ' + col +
+                           '">(' + col + ')</b>';
+      }
+    }
+  });
+
+  amounts.addEventListener('click', function(ev) {
+    ev.preventDefault();
+    var target = ev.target;
+    if (target.tagName === 'BUTTON') {
+      swabnumber = target.getAttribute('data-amount');
+      save();
+      init();
+    }
+  });
+
+  function save() {
+    localStorage.zomgcsscolourstate = right + 'x' + allmoves +
+                                      'x' + swabnumber;
+  }
+
+  function randomswabs() {
+    var list = document.querySelector('ul');
+    var out ='';
+    var newrand = [];
+    if (swabnumber === 'all') {
+      newrand = shuffle(cols);
+    } else {
+      newrand = shuffle(cols).slice(0, +swabnumber);
+    }
+    var all = newrand.length;
+    var index = Math.floor(Math.random() * newrand.length);
+    currentcol = newrand[index];
+    colname.innerHTML = currentcol;
+    for (var i = 0; i < all; i++) {
+      out += '<li><a href="#"  data-title="' + newrand[i] +
+             '" style="background:' + newrand[i] +
+             '"></a></li>';
+    }
+    list.innerHTML = out;
+  }
+
+  function shuffle(array) {
+    var newarray = array.slice(0);
+    var currentIndex = newarray.length, temporaryValue, randomIndex ;
+    while (0 !== currentIndex) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+      temporaryValue = newarray[currentIndex];
+      newarray[currentIndex] = newarray[randomIndex];
+      newarray[randomIndex] = temporaryValue;
+    }
+    return newarray;
+  }
+
+  document.addEventListener('keydown', function(ev) {
+    if (ev.which === 191) {
+      document.querySelector('a[data-title^=' + currentcol +
+                             ']').innerHTML = '!';
+      }
+  });
+  document.addEventListener('keyup', function(ev) {
+      document.querySelector('a[data-title^=' + currentcol +
+                             ']').innerHTML = '';
+  });
+  document.querySelector('button').addEventListener('click',
+    function(ev) {
+      localStorage.zomgcsscolourstate = '0x0';
+      init();
+  });
+
+})();
+</script>
+</body>
+</html>
